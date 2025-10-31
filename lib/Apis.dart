@@ -1,44 +1,71 @@
-// import 'dart:convert';
+import 'dart:convert';
+import 'dart:ffi';
+import 'dart:ui';
 
-// import 'package:apiis/model/modelcrud.dart';
-// import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
-// final String baseurl =  "https://crudcrud.com/api/8e9fdd9d44f24f4b90f6d7bda1015471/tasks";
-// class ApiClass{
+import 'package:apiis/model/modelcrud.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-// Future geto() async{
-// var url = Uri.parse(baseurl); 
-// try {
-// var res = await http.get(url);
-// if (res.statusCode == 200) {
-//   var respo = jsonDecode(res.body);
-// }
-// else{
-//   "Failed to Result : ${res.statusCode}";
-// }
-// }
-// catch(error){
-//  ScaffoldMessenger.of(
-//   context
-//   ).
-//  showSnackBar(SnackBar(content: Text("Error : $error")));
-// }
+final String baseurl =
+    "https://crudcrud.com/api/8e9fdd9d44f24f4b90f6d7bda1015471/tasks";
 
-// }
-// }
-// Future<void>pos(String title ,String body)async{
-// final url = Uri.parse(baseurl);
-// try {
-//   final posi = await http.post(url,headers : {"Content-Type": "application/json"},
-//   body: jsonEncode({"title":"Ashir App","body":"This is my struggle Journey"}));
-// if (posi.statusCode == 201) {
-//  throw Exception("Error: ${posi.statusCode}");
-// }
+class ApiClass {
+  Future<void> geto(BuildContext context) async {
+    var url = Uri.parse(baseurl);
+    try {
+      var res = await http.get(url);
+      if (res.statusCode == 200) {
+        var respo = jsonDecode(res.body);
+      } else {
+        "Failed to Result : ${res.statusCode}";
+      }
+    } catch (error) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error : $error")));
+    }
+  }
+}
 
-// } catch (e) {
-// throw Exception(  "Unable Data");
+Future<void> pos(String title, String body) async {
+  final url = Uri.parse(baseurl);
+  try {
+    final posi = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "title": "Ashir App",
+        "body": "This is my struggle Journey",
+      }),
+    );
+    if (posi.statusCode == 201) {
+      throw Exception("Error: ${posi.statusCode}");
+    }
+  } catch (e) {
+    throw Exception("Unable Data");
+  }
+}
 
+Future<void> Del(BuildContext context) async {
+  var url = Uri.parse(baseurl);
 
-// }
-
-// }
+  try {
+    final del = await http.delete(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "title": "Ashu baba",
+        "body": "I wanted to entrepreneure of Software house",
+      }),
+    );
+    if (del.statusCode == 200) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Task updated successfully")));
+    }
+  } catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("We got error :$e")));
+  }
+}
