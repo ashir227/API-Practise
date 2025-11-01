@@ -12,7 +12,7 @@ class Prac extends StatefulWidget {
 
 class _PracState extends State<Prac> {
   List<TaskModel> Apiss = [];
-  late Future<List<TaskModel>> fututask;
+  // late Future<List<TaskModel>> fututask;
 
   String urrl =
       "https://crudcrud.com/api/38151da94ac246f3849c1489c7feaba6/tasks";
