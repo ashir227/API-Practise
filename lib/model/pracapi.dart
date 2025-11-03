@@ -20,7 +20,7 @@ class _PracState extends State<Prac> {
   @override
   void initState() {
     super.initState();
-    fututask = getapi(); // ✅ only once call
+    var fututask = getapi(); // ✅ only once call
   }
 
   Future<List<TaskModel>> getapi() async {
