@@ -87,7 +87,7 @@ class _PracState extends State<Prac> {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                final task = snapshot.data![index];
+                // final task = snapshot.data![index];
                 return ListTile(
                   title: Text(task.title ?? "No title"),
                   subtitle: Text(task.body ?? "No body"),
